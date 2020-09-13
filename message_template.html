@@ -1,0 +1,41 @@
+<style>
+    #t01 tr:nth-child(even) {
+  background-color: #eee;
+    }
+    #t01 tr:nth-child(odd) {
+      background-color: #fff;
+    }
+    #t01 th {
+      color: white;
+      background-color: black;
+    }
+</style>
+
+<div style="margin-bottom: 40px">
+    <p>Bonjour {{ name }} !</p>
+    <p>Il te reste encore {{ tasks | length }} tâches à effectuer.</p>
+</div>
+<table id="t01">
+  <tr>
+    <th>Projets</th>
+    <th>Taches</th>
+    <th>Deadline</th>
+    <th>Créé le</th>
+  </tr>
+    {% for project in projects %}
+        {% for task in projects[project]['tasks'] %}
+            <tr>
+                {% if loop.index == 1 %}
+                    <td rowspan="{{ projects[project]['tasks']|length }}">{{ projects[project]['name']}}</td>
+                {% endif %}
+                <td>{{ projects[project]['tasks'][task]['content'] }}</td>
+                {% if "due" in projects[project]['tasks'][task] %}
+                <td>{{ projects[project]['tasks'][task]['due']['date'] }}</td>
+                {% else %}
+                <td>--</td>
+                {% endif %}
+                <td>{{ projects[project]['tasks'][task]['date_added'] }}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>

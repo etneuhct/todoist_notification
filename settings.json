@@ -1,0 +1,8 @@
+{
+  "token": "todoisttoken",
+  "mail": "mail@mail.com",
+  "password": "password",
+  "receivers": ["mail@mail.com"],
+  "preferred_format": "html",
+  "time_between": 24
+}
